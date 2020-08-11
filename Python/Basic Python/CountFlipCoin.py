@@ -21,7 +21,7 @@ try:
         totalCount += 1
     headPercentage = (countHead / totalCount) * 100
     print("Percentage of Head is {0:.2f}".format(headPercentage))
-    tailPercentage = ((totalCount-countHead) / totalCount) * 100
+    tailPercentage = ((totalCount - countHead) / totalCount) * 100
     print("Percentage of Tail is {0:.2f}".format(tailPercentage))
 
 except(Exception):
