@@ -2,11 +2,18 @@
 """
 Created on Thu Aug 13 01:13:07 2020
 
-@author: hp
+@author: Niraj Kumar
+StockAccount.java implements a data type that
+might be used by a financial institution to keep track of customer information
+The StockAccount class also maintains a list of CompanyShares object which has
+Stock Symbol and Number of Shares as well as DateTime of the transaction. When
+buy or sell is initiated StockAccount checks if CompanyShares are available and
+accordingly update or create an Object
 """
 import csv
 import os
 import json
+from datetime import datetime
 class CustomerInformation:
     def __init__(self,filepath = "customer.csv"):
         self.filepath = filepath
@@ -76,7 +83,7 @@ class StockAccount:
                 dictionaryData ={}
                 dictionaryData["stockSymbol"] = stockSymbol
                 dictionaryData["NumberOfShares"] = numberOfShares
-                dictionaryData["transactionDate"] = 0
+                dictionaryData["transactionDate"] = datetime.now()
                 if stockAccountNumber not in data:
                     data[stockAccountNumber] = []
                     data[stockAccountNumber].append(dictionaryData)
@@ -114,7 +121,7 @@ class StockAccount:
                 numberOfShares = stock.shareDetails(stockSymbol,amount,1)
                 dictionaryData["stockSymbol"] = stockSymbol
                 dictionaryData["NumberOfShares"] = priornumberOfShares- numberOfShares
-                dictionaryData["transactionDate"] = 0
+                dictionaryData["transactionDate"] = datetime.now()
                 temp = data[stockAccountNumber]
                 temp.append(dictionaryData)
             
