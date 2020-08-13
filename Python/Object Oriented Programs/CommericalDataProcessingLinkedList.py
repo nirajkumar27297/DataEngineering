@@ -9,7 +9,7 @@ import os
 import json
 from datetime import datetime
 
-class Node:
+class ShareNode:
     def __init__(self,shareName,numberofStocks,sharePrice):
         self.shareName = shareName
         self.numberofStocks = numberofStocks
@@ -23,7 +23,7 @@ class LinkedList:
         self.count = 0
     
     def addElement(self,shareName,numberofStocks,sharePrice):
-        newNode = Node(shareName,numberofStocks,sharePrice)
+        newNode = ShareNode(shareName,numberofStocks,sharePrice)
         if(self.front is None and self.rear is None):
             self.front = newNode
         else:
@@ -40,6 +40,7 @@ class LinkedList:
             return -1
         data = self.front.data
         self.front = self.front.next
+        self.count -= 1
         return data
     
 class CustomerInformation:
