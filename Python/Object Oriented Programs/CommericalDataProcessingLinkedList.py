@@ -10,8 +10,10 @@ import json
 from datetime import datetime
 
 class Node:
-    def __init__(self,data):
-        self.data = data
+    def __init__(self,shareName,numberofStocks,sharePrice):
+        self.shareName = shareName
+        self.numberofStocks = numberofStocks
+        self.sharePrice = sharePrice
         self.next = None
 
 class LinkedList:
@@ -20,8 +22,8 @@ class LinkedList:
         self.rear = None
         self.count = 0
     
-    def addElement(self,data):
-        newNode = Node(data)
+    def addElement(self,shareName,numberofStocks,sharePrice):
+        newNode = Node(shareName,numberofStocks,sharePrice)
         if(self.front is None and self.rear is None):
             self.front = newNode
         else:
@@ -184,8 +186,8 @@ class StockValueCalculation:
                 if(i != 0):
                     if(len(lines[i]) != 0 and lines[i][0].upper() == stockSymbol and lines[i][1] != '0'):
                         #Using Linked List to store shares
-                        sharesLinkedList.addElement(lines[i][0].upper())
-                        shareAllocated = int(amount) / int(lines[i][2])
+                        sharesLinkedList.addElement(lines[i][0].upper(),lines[i][1],float(lines[i][2]))
+                        shareAllocated = float(amount) / float(lines[i][2])
                         #Buying shares
                         if(flag == 0):
                             lines[i][1] = float(lines[i][1]) - shareAllocated
@@ -209,7 +211,7 @@ class StockValueCalculation:
    
 #main function
 customer = CustomerInformation()   
-name,phoneNo = [x for x in input("Enter you name and phonenumber").split()]     
+name,phoneNo = [x for x in input("Enter you Name and Phonenumber").split()]     
 ch = input("Are you a new customer")
 if(ch.lower() == 'y'):
     
